@@ -1,0 +1,25 @@
+.containter
+{
+    width: 200px;
+}
+
+.form-row
+{
+
+}
+
+.form-row .form-column .form-label
+{
+    font-weight: bold;
+    text-align: left;
+    display: inline-block;
+    width:100px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.form-row .form-column .form-input
+{
+    text-align:left;
+    float:left;
+}
