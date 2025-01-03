@@ -11,7 +11,7 @@ if(isset($_POST['Add_Pay_Details'])){
         require_once '../src/UserConnect.php';
         // insert new user code will go here        
         $new_payDetails = array(               
-            "userId" => ($_SESSION['Id']),   
+            "userId" => ($_SESSION['UserId']),   
             "name" => test_input($_POST['name']),
             "email" => test_input($_POST['email']),
             "address" => test_input($_POST['address']),
@@ -95,13 +95,13 @@ else if(isset($_POST['Update_Pay_Details'])){
 }
 
 
-if (isset($_SESSION['Id'])) {
+if (isset($_SESSION['UserId'])) {
     try {
         require_once '../src/UserConnect.php';
-        $id = $_SESSION['Id'];
-        $sql = "SELECT * FROM paymentDetails WHERE userId = :id";
+        $userid = $_SESSION['UserId'];
+        $sql = "SELECT * FROM paymentDetails WHERE userId = :userid";
         $statement = $connection->prepare($sql);
-        $statement->bindValue(':id', $id);
+        $statement->bindValue(':userid', $userid);
         $statement->execute();
         $user_payDetails = $statement->fetch(PDO::FETCH_ASSOC);
         // var_dump($user_payDetails);

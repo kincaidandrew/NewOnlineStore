@@ -47,7 +47,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $username_err = "Username can only contain letters, numbers, and underscores.";
     } else{
         // Prepare a select statement
-        $sql = "SELECT id FROM users WHERE username = :Username";
+        $sql = "SELECT userid FROM users WHERE username = :Username";
         
         //$pdo = new PDO($dsn, $dbUsername, $dbPassword, $options);
         require_once '../src/DBConnect.php';
@@ -98,7 +98,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(empty($firstname_err) && empty($lastname_err) && empty($email_err) && empty($age_err) && empty($location_err) && empty($username_err) && empty($password_err) && empty($confirm_password_err)){
         
         // Prepare an insert statement
-        $sql = "INSERT INTO users (firstname, lastname, email, age, location, Username, Password, IsAdmin) VALUES (:Firstname, :Lastname, :Email, :Age, :Location, :Username, :Password, :IsAdmin)";
+        $sql = "INSERT INTO users (firstname, lastname, email, age, location, Username, Password, IsAdmin) 
+                VALUES (:Firstname, :Lastname, :Email, :Age, :Location, :Username, :Password, :IsAdmin)";
          
         if($stmt = $pdo->prepare($sql)){
             // Bind variables to the prepared statement as parameters

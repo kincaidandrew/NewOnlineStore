@@ -5,10 +5,10 @@
 ?> -->
   </main>   
 </div> 
-  <footer class="footer">   
-      <div class="footer-row">
-      <p>ARK Software Solutions</p>
-          <div class="footer-column">
+  <footer class="footer fixed-bottom bg-primary">   
+      <div class="container text-center">
+      <span class="text-white">ARK Software Solutions</span>
+          <div>
               <a href = "mailto:B00168388@mytudublin.ie?subject=Contact the Developer &body=Please add your message below and ARK Software Solutions will get back to you asap. Thanks Regards Andrew."><img src = "./images/ARK Logo.jpg" alt = "ARK Logo" height = "40px"></a>
           </div>              
       </div>        

@@ -38,7 +38,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Validate credentials   
     if(empty($username_err) && empty($password_err)){
         // Prepare a select statement
-        $sql = "SELECT Id, Username, Firstname, Lastname, Password, IsAdmin FROM users WHERE Username = :Username";
+        $sql = "SELECT UserId, Username, Firstname, Lastname, Password, IsAdmin FROM users WHERE Username = :Username";
         
         //$connection = new PDO($dsn, $username, $password, null);
         
@@ -55,7 +55,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 // Check if username exists, if yes then verify password
                 if($stmt->rowCount() == 1){
                     if($row = $stmt->fetch()){
-                        $id = $row["Id"];
+                        $userid = $row["UserId"];
                         $username = $row["Username"];
                         $hashed_password = $row["Password"];
                         $isadmin = $row["IsAdmin"];
@@ -65,7 +65,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             
                             // Store data in session variables
                             $_SESSION["Active"] = true;
-                            $_SESSION["Id"] = $id;
+                            $_SESSION["UserId"] = $userid;
                             $_SESSION["Username"] = $username; 
                             $_SESSION["IsAdmin"] = $isadmin;
                             // $_SESSION["cart"] = [];
@@ -137,26 +137,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 </form>
 
                 <?php
-                
-                // if(isset($_POST['Submit']))
-                //     {
-
-                //         /* Check if the form's username and password matches */
-                //         /* these currently check against variable values stored in config.php but later we will see how these can be checked against information in a database*/
-                //         if( ($_POST['Username'] == $Username) && ($_POST['Password'] == $Password) )
-                //         {
-                //             //echo 'Success';
-                //             /* Success: Set session variables and redirect to protected page */
-                //             $_SESSION['Username'] = $Username; //store Username to the session
-                //             $_SESSION['Active'] = true; //remember we can call a session what we like e.g. $_SESSION["newsession"]=$value;
-                //             header("location:index.php"); /* 'header() is used to redirect the browser */
-                //             exit; //we’ve just used header() to redirect to another page but we must terminate all current code so that it doesn’t run when we redirect
-                        
-
-                //         }
-                //         else
-                //             echo 'Incorrect Username or Password';
-                //     }
+              
                 ?>
                 
 

@@ -3,21 +3,6 @@
       
       session_start();  
       
-      //initailize Session to temp user until they log in!!
-      // if (!session_status())
-      // {
-      //   session_start();
-      //   $_SESSION["Active"] = false;
-      //   $_SESSION["Id"] = -1;
-      //   $_SESSION["Username"] = 'Temp'; 
-      //   $_SESSION["IsAdmin"] = 0;
-      //   $_SESSION["cart"] = [];
-        
-      // }
-      //print_r($_SESSION);
-      //$user = $_SESSION['username'];
-      //echo $user['name'];   
-       //Start the session
    //Check if the add to cart button is clicked
    
    if (isset($_POST["add_to_cart"])){
@@ -29,7 +14,7 @@
       header("location:index.php");
   }
     //Get the product id from the form
-    $product_id = $_POST["product_id"];
+    $productid = $_POST["productid"];
 
     //Get the product quantity from the form
     $product_quantity = $_POST["product_quantity"];
@@ -37,13 +22,13 @@
     
     //Add the product and quantity to the cart
 
-    if (!isset($_SESSION["cart"][$product_id]))
+    if (!isset($_SESSION["cart"][$productid]))
     {
-      $_SESSION["cart"][$product_id] = $product_quantity;
+      $_SESSION["cart"][$productid] = $product_quantity;
     }
     else
     {
-      $_SESSION["cart"][$product_id] += $product_quantity;
+      $_SESSION["cart"][$productid] += $product_quantity;
     }
     
     header("location:index.php");
@@ -73,17 +58,17 @@
                 
                     foreach($result as $row){
                       //$prodCount++;
-                      $id = $row['id'];
+                      $productid = $row['productid'];
                       $name = $row['name'];
                       $price = $row['price'];
                       $description = $row['description'];
                       $image = $row['imageRef'];
                       $image = '<img src= "../images/' . $image . '" alt ="' . $image . '">';
-                      $pQuad_id = "product{$id}_quantity";
+                      $pQuad_id = "product{$productid}_quantity";
                       
                                         
                       $form =  "<form method=\"post\" action=\"index.php\">
-                                  <input type=\"hidden\" name=\"product_id\" value=\"{$id}\">
+                                  <input type=\"hidden\" name=\"productid\" value=\"{$productid}\">
                                   <label for=\"{$pQuad_id}\">Quantity:</label>
                                   <input type=\"number\" id=\"{$pQuad_id}\" name=\"product_quantity\" value=\"\" min=\"0\" max=\"10\">
                                   <button type=\"submit\" name= \"add_to_cart\">Add to Cart</button>
@@ -106,7 +91,7 @@
             
           </ul>
       </section>
-    </table>
+    <!-- </table> -->
       <form action="checkout.php" method="post">
           <input type="submit" value="Checkout" class="button"/>
       </form>

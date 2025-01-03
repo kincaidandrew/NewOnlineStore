@@ -6,38 +6,6 @@ session_start();
 <?php include '../templates/header.php';
 require_once ('../functions/functions.php');
 
-// if(isset($_POST['Add_Pay_Details'])){
-//     try {
-//         require_once '../src/UserConnect.php';
-//         // insert new user code will go here        
-//         $new_payDetails = array(               
-//             "userId" => ($_SESSION['Id']),   
-//             "name" => test_input($_POST['name']),
-//             "email" => test_input($_POST['email']),
-//             "address" => test_input($_POST['address']),
-//             "city" => test_input($_POST['city']),
-//             "state" => test_input($_POST['state']),        
-//             "postcode" => test_input($_POST['postcode']),        
-//             "nameOnCard" => test_input($_POST['nameOnCard']),        
-//             "cardNumber" => test_input($_POST['cardNumber']),        
-//             "expMonth" => test_input($_POST['expMonth']),
-//             "expYear" => test_input($_POST['expYear']),
-//             "cvv" => test_input($_POST['cvv'])
-//         );
-
-//         $sql = sprintf( 
-//             "INSERT INTO %s (%s) values (%s)", 
-//             "paymentDetails", 
-//             implode(", ",
-//         array_keys($new_payDetails)), ":" . implode(", :", array_keys($new_payDetails)) );
-
-//         $statement = $connection->prepare($sql);
-//         $statement->execute($new_payDetails);
-//     } catch(PDOException $error)
-//     {
-//         echo $sql . "<br>" .$error->getMessage();
-//     } 
-// }
 
 if(isset($_POST['Update_User_Details'])){
     try {
@@ -54,7 +22,7 @@ if(isset($_POST['Update_User_Details'])){
         );
 
         //var_dump($user_payDetails); 
-        $user_ID = $_SESSION['Id'];
+        $userId = $_SESSION['UserId'];
 
         $set_values = '';
         foreach ($updated_userDetails as $key => $value)            
@@ -76,7 +44,7 @@ if(isset($_POST['Update_User_Details'])){
         "UPDATE %s set %s where id = %s", 
         "users", 
         $set_values,
-        $user_ID
+        $userId
     );
 
     //    var_dump($sql); 
@@ -91,13 +59,13 @@ if(isset($_POST['Update_User_Details'])){
 }
 
 
-if (isset($_SESSION['Id'])) {
+if (isset($_SESSION['UserId'])) {
     try {
         require_once '../src/UserConnect.php';
-        $id = $_SESSION['Id'];
-        $sql = "SELECT * FROM users WHERE id = :id";
+        $userid = $_SESSION['UserId'];
+        $sql = "SELECT * FROM users WHERE userid = :userid";
         $statement = $connection->prepare($sql);
-        $statement->bindValue(':id', $id);
+        $statement->bindValue(':userid', $userid);
         $statement->execute();
         $user_Details = $statement->fetch(PDO::FETCH_ASSOC);
         // var_dump($user_Details);

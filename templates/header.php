@@ -24,15 +24,16 @@
       // }
         
       
-      if(!isset($_SESSION['Id']))
+      if(!isset($_SESSION['UserId']))
       {
        // header("Location: login.php");
        //session_start();
         $_SESSION["Active"] = false;
-        $_SESSION["Id"] = -1;
+        $_SESSION["UserId"] = -1;
         $_SESSION["Username"] = 'Guest'; 
         $_SESSION["IsAdmin"] = 0;
         $_SESSION["cart"] = [];
+        $_SESSION["orderTotal"]=0;
       }
       else
       {
@@ -68,6 +69,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="../css/shop.css">
   <!-- shop.css is an important one for product display --> 
 </head>
@@ -96,12 +98,12 @@
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 
-                <?php echo (($_SESSION && ($_SESSION['Username'] != '' && $_SESSION['Id'] != -1)) ? 
+                <?php echo (($_SESSION && ($_SESSION['Username'] != '' && $_SESSION['UserId'] != -1)) ? 
                   '<a class="dropdown-item" href="userDetails.php">Account Details</a>                
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="paymentDetails.php">Payment Details</a>                
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="paymentDetails.php">My Orders</a>                
+                  <a class="dropdown-item" href="userOrders.php">My Orders</a>                
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="logout.php">Logout</a>' : 
                 '<a class="dropdown-item" href="login.php">Log in</a>
