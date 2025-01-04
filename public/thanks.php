@@ -81,49 +81,51 @@
         echo "<p>{$address}<br>{$city}<br>{$postcode}</p>";
         echo "<p>Contact email : {$emailAddress}</p><br><hl>";?>
 
-        <table>
+    <table class="table table-striped">
+        <thead>
             <tr>
                 <th>Product Name </th>
                 <th>Quantity </th>
                 <th>Price </th>
                 <th>Total </th>                
             </tr>
-    <?php
-        foreach($orderdetails as $row)
-        {
-            $productid = $row['productid'];
-            $name = $row['name'];
-            $product_quantity = $row['product_quantity'];
-            $price = $row['price'];
-            $orderstatus = $row['status'];
-            
+            <?php
+                foreach($orderdetails as $row)
+                {
+                    $productid = $row['productid'];
+                    $name = $row['name'];
+                    $product_quantity = $row['product_quantity'];
+                    $price = $row['price'];
+                    $orderstatus = $row['status'];
+                    
 
-            $item_total = $product_quantity * $price; 
-            $total += $item_total;                         
+                    $item_total = $product_quantity * $price; 
+                    $total += $item_total;                         
 
+                    
+                    echo "<tr>";
+                    echo "<td> $name </td>";
+                    echo "<td> $product_quantity </td>";
+                    echo "<td> $price </td>";
+                    echo "<td> &euro;$item_total </td>";            
+                    echo "</tr>";    
+                }               
             
-            echo "<tr>";
-            echo "<td> $name </td>";
-            echo "<td> $product_quantity </td>";
-            echo "<td> $price </td>";
-            echo "<td> &euro;$item_total </td>";            
-            echo "</tr>";    
-        }               
-    
-        //Display total s and order status
-        echo "<tr>";
-        echo "<td xolspan='3'> Total:</td>";
-        echo "<td>&euro;$total</td>";
-        echo "<td xolspan='3'> Order Status:</td>";
-        echo "<td> $orderstatus</td>";
-        echo "</tr><br><br>";   
-    }
-    ?> 
-    </table>
-    <form action="thanks.php" method="post">
-        <input name ="Submit" type="submit" value="OK" class="button"/>
-    </form>
-</ul>
+                //Display total s and order status
+                echo "<tr>";
+                echo "<td xolspan='3'> Total:</td>";
+                echo "<td>&euro;$total</td>";
+                echo "<td xolspan='3'> Order Status:</td>";
+                echo "<td> $orderstatus</td>";
+                echo "</tr><br><br>";   
+            }
+            ?> 
+            </tbody>
+            </table>
+            <form action="thanks.php" method="post">
+                <input name ="Submit" type="submit" value="OK" class="button"/>
+            </form>
+        </ul>
 </section>
 
 <?php require_once "../templates/footer.php";?>

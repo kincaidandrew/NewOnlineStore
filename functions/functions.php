@@ -7,6 +7,12 @@ function test_input($data)
     return $data;
 }
 
+function checkPaymentDetails($userid)
+{
+    
+    
+}
+
 function logOut()
 {
     //Initialize the session
@@ -17,7 +23,7 @@ function logOut()
     //Destroy the session
     session_destroy();
 
-    header("location: login.php");
+    header("location: index.php");
     exit;
 }
 

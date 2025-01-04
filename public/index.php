@@ -92,8 +92,8 @@
           </ul>
       </section>
     <!-- </table> -->
-      <form action="checkout.php" method="post">
-          <input type="submit" value="Checkout" class="button"/>
+      <form action="cart.php" method="post">
+          <input type="submit" value="Go To Cart" class="button"/>
       </form>
   </section>         
 </div>

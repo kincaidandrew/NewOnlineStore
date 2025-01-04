@@ -38,7 +38,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Validate credentials   
     if(empty($username_err) && empty($password_err)){
         // Prepare a select statement
-        $sql = "SELECT UserId, Username, Firstname, Lastname, Password, IsAdmin FROM users WHERE Username = :Username";
+        $sql = "SELECT UserId, Username, Firstname, Lastname, Password, IsAdmin 
+        FROM users 
+        WHERE Username = :Username";
         
         //$connection = new PDO($dsn, $username, $password, null);
         
@@ -70,7 +72,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $_SESSION["IsAdmin"] = $isadmin;
                             // $_SESSION["cart"] = [];
                             // Redirect user to welcome page
-                            header("location: index.php");
+                            if($_SESSION["IsAdmin"])
+                            {
+                                header("location:../admin/userAdmin.php");
+                            }
+                            else
+                            {
+                                header("location: index.php");
+                            }
+                            
                         } else{
                             // Password is not valid, display a generic error message
                             $login_err = "Invalid username or password.";

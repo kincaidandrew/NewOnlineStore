@@ -104,8 +104,11 @@ if (isset($_SESSION['UserId'])) {
         $statement->bindValue(':userid', $userid);
         $statement->execute();
         $user_payDetails = $statement->fetch(PDO::FETCH_ASSOC);
-        // var_dump($user_payDetails);
-        $_SESSION['payDetailsID'] = $user_payDetails['payDetailsID'];
+        if ($user_payDetails)// var_dump($user_payDetails);
+        {
+            $_SESSION['payDetailsID'] = $user_payDetails['payDetailsID'];
+        }
+        
     } catch(PDOException $error) {
         echo $sql . "<br>" . $error->getMessage();
     } 
